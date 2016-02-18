@@ -1,0 +1,20 @@
+{% extends 'AdminBundle::layout.html.twig' %}
+
+{% block body %}
+    <div class="container">
+        <div class="card-panel">
+            <h1>Creation utilisateur</h1>
+
+            {{ form_start(form) }}
+            {{ form_widget(form) }}
+            <input class="btn waves-effect waves-light" type="submit" value="Create" />
+            {{ form_end(form) }}
+
+            <ul>
+                <li>
+                    <a href="{{ path('admin_user_index') }}">Retour</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+{% endblock %}

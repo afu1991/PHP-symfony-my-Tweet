@@ -1,0 +1,79 @@
+{% extends 'CoreBundle::layout.html.twig' %}
+
+{% block body %}
+
+
+    <div class="row">
+        <div id="admin" class="col s12">
+            <div class="card material-table">
+                <div class="table-header">
+                    <span class="table-title">{{ "Liste des Walls"|trans }}</span>
+                    <div class="actions">
+                        <a class="btn-floating btn-medium waves-effect blue darken-1" href="{{ path('wall_new') }}"><i class="material-icons">add</i></a>
+                    </div>
+                </div>
+                <form method="POST">
+                <table id="datatable">
+                    <thead>
+
+                    <tr>
+                        <th>{{ "Selections"|trans }}</th>
+                        <th>{{ "Nom"|trans }}</th>
+                        <th>{{ "Administrable"|trans }}</th>
+                        <th>{{ "Voir"|trans }}</th>
+                        <th>{{ "Modifier"|trans }}</th>
+                        <th>{{ "Supprimer"|trans }}</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    {% for wall in users.wall %}
+                    <tr>
+                        <td>
+                            <p>
+                                <input type="checkbox" id="{{ wall.id }}" name="wall[{{ wall.id }}]"/>
+                                <label for="{{ wall.id }}"> </label>
+                            </p>
+                        </td>
+                        <td>
+
+                            {% if wall.type.id == 1 %}
+                                #{{ wall.name }}
+
+                            {% elseif wall.type.id == 2 %}
+                                @{{ wall.name }}
+                            {% elseif wall.type.id == 3 %}
+                                #{{ wall.name }}
+                            {% endif %}
+                        </td>
+                        <td>{% if wall.active %}{{ "Oui"|trans }}{% else %} {{ "Non"|trans }} {% endif %}</td>
+
+                        <td>
+                            {% if wall.active %}
+                                <a class="waves-effect waves-light btn grey darken-2" href="{{ path('wall_show', { 'id': wall.id }) }}"><i class="fa fa-asterisk fa-2x"></i></a>
+                            {% else %}
+                              <a class="waves-effect waves-light btn green darken-2" href="{{ path('wall_show', { 'id': wall.id }) }}"><i class="fa fa-eye fa-3x"></i></a>
+                            {% endif %}
+                        </td>
+                        <td>
+                            <a class="waves-effect waves-light btn amber" href="{{ path('wall_edit', { 'id': wall.id }) }}"><i class="fa fa-refresh fa-3x"></i></a>
+                        </td>
+                        <td>
+                            <a class="waves-effect waves-light btn red" href="{{ path('wall_delete', { 'wall': wall.id }) }}"><i class="fa fa-times fa-3x"></i></a>
+                        </td>
+                    </tr>
+
+                    {% endfor %}
+
+                    </tbody>
+                </table>
+                    <button type="submit" name="delete" value="delete" class="waves-effect waves-light btn red btn-margin"><i class="fa fa-trash-o fa-3x"></i></button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+
+
+{% endblock %}
+
+

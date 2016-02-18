@@ -1,0 +1,38 @@
+{% extends 'CoreBundle::layout.html.twig' %}
+
+{% block body %}
+
+    <div class="col s12 m12 l12" style="height: 300px">
+
+    </div>
+
+    <div class="slider">
+        <ul class="slides">
+        {% for tweet in tweets %}
+            {% if tweet.accepted %}
+            <li>
+
+                <img src="{{ tweet.profilBackgroundImage }}" alt="">
+                <div class="caption {{ random(['center-align', 'left-align', 'right-align', 'center-align'])  }}">
+                    <h3>{{ tweet.content | parse }}</h3>
+                    <h5 class="light grey-text text-lighten-3">
+                        {% if tweet.followingProfilImage %}
+                            <img src="{{ tweet.followingProfilImage | replace }}" alt="IMG" class="circle responsive-img" style="width: 10%;height: 10%;">
+
+                        {% else  %}
+                            <img src="http://static.ladepeche.fr/content/media/image/zoom/2011/09/30/anonyme.jpg" alt="IMG" class="circle responsive-img height-img" style="width: 10%;height: 10%;>  <!-- notice the "circle" class -->
+                        {% endif %}
+                        <a href="https://twitter.com/{{ tweet.followingProfilUsername }}">
+                            @{{ tweet.followingProfilUsername }}
+                        </a>
+                    </h5>
+                </div>
+            </li>
+
+            {% endif %}
+        {% endfor %}
+        </ul>
+
+    </div>
+
+{% endblock %}

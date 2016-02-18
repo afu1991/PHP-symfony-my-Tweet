@@ -1,0 +1,55 @@
+{% extends 'AdminBundle::layout.html.twig' %}
+
+{% block body %}
+    <div class="row">
+        <div id="admin" class="col s12">
+            <div class="card material-table">
+                <div class="table-header">
+                    <span class="table-title">Liste des utilisateurs</span>
+                    <div class="actions">
+                        <a class="btn-floating btn-medium waves-effect blue darken-1" href="{{ path('admin_user_new') }}"><i class="material-icons">add</i></a>
+                    </div>
+                </div>
+                <table id="datatable">
+                    <thead>
+
+                    <tr>
+                        <th>Selections</th>
+                        <th>Username</th>
+                        <th>Email</th>
+                        <th>Dernier connexion</th>
+                        <th>Voir</th>
+                        <th>Modifier</th>
+                        <th>Supprimer</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    {% for user in users %}
+                        <tr>
+                            <td>{{ user.id }}</td>
+                            <td>{{ user.username }}</td>
+                            <td>{{ user.email }}</td>
+
+                            <td>{{ user.lastLogin  | date('d/m/Y') }}</td>
+                            <td>
+                                <a class="btn waves-effect blue darken-1" href="{{ path('admin_user_show', { 'id': user.id }) }}">
+                                <i class="fa fa-eye fa-3x"></i>
+                                </a>
+                            </td>
+                            <td>
+                                <a class="waves-effect waves-light btn amber" href="{{ path('admin_user_edit', { 'id': user.id }) }}"><i class="fa fa-refresh fa-3x"></i></a>
+                            </td>
+                            <td>
+                                <a class="waves-effect waves-light btn red" href="{{ path('admin_user_delete', { 'user': user.id }) }}"><i class="fa fa-times fa-3x"></i></a>
+                            </td>
+                        </tr>
+
+                    {% endfor %}
+
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+{% endblock %}

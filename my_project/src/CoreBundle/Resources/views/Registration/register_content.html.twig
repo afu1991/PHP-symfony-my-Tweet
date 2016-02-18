@@ -1,0 +1,22 @@
+{% trans_default_domain 'FOSUserBundle' %}
+<div class="container">
+    <div class="card-panel">
+
+        <div class="row">
+            <div class="input-field col s12 center">
+                <img src="http://www.ip-watch.org/weblog/wp-content/uploads/2015/03/design-image.jpg" alt="circle" class="circle responsive-img valign profile-image-login" style="width: 120px;height: 120px;">
+                <p class="center login-form-text">Wall Design</p>
+            </div>
+
+            {{ form_start(form, {'method': 'post', 'action': path('fos_user_registration_register'), 'attr': {'class': 'fos_user_registration_register'}}) }}
+            {{ form_widget(form) }}
+            <div class="col s12 button-top">
+                <input  class="btn waves-effect waves-light" type="submit" id="_submit" name="_submit" value="{{ 'registration.submit'|trans }}" />
+            </div>
+            {{ form_end(form) }}
+        </div>
+    </div>
+    <p>Deja membre? <a href="{{ path('fos_user_security_login') }}"> {{ "Se connecter ici" |trans }}</a></p>
+
+
+</div>

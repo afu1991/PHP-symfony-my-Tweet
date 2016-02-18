@@ -1,0 +1,40 @@
+{% extends 'CoreBundle::layout.html.twig' %}
+
+{% block body %}
+    <div class="row">
+        <div class="container">
+           <div class="card-panel">
+
+
+               {{ form_start(form) }}
+               <div class="row">
+                   <div class="input-field col s6">
+                       {{ form_widget(form.name) }}
+                       {{ form_label(form.name, "Nom")}}
+                   </div>
+               </div>
+               <div class="row">
+                   <div class="input-field col s6">
+                       {{ form_widget(form.active) }}
+                       {{ form_label(form.active, "Administrable")}}
+                   </div>
+               </div>
+               <div class="row">
+                   <div class="input-field col s6">
+                       {{ form_widget(form.type) }}
+                       {{ form_label(form.type, "Nom")}}
+                   </div>
+               </div>
+               <div class="row">
+                   <div class="input-field col s6">
+                       <input class="waves-effect waves-light btn" type="submit" value="Create" />
+                   </div>
+               </div>
+               {{ form_end(form) }}
+
+
+           </div>
+        </div>
+    </div>
+
+{% endblock %}

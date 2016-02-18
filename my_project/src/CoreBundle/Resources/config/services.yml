@@ -1,0 +1,27 @@
+
+services:
+#    core.example:
+#        class: CoreBundle\Example
+#        arguments: ["@service_id", "plain_value", %parameter%]
+ core.twig_extension.core_extension:
+    class: CoreBundle\Twig\Extension\CoreExtension
+    calls:
+        - [ initRuntime, [ "@twig" ] ]
+    tags:
+        - { name: twig.extension }
+
+ core.redirection.after_login_redirection:
+    class: CoreBundle\Redirection\AfterLoginRedirection
+    arguments: [ "@router" ]
+
+ core.service.twitter_service:
+    class: CoreBundle\Service\TwitterService
+    arguments: ['%consumer_key%','%consumer_secret%', '@core.manager.twitter_manager','@core.manager.wall_manager']
+
+ core.manager.wall_manager:
+    class: CoreBundle\Manager\WallManager
+    arguments: [ "@doctrine.orm.default_entity_manager" ]
+
+ core.manager.twitter_manager:
+    class: CoreBundle\Manager\TwitterManager
+    arguments: [ "@doctrine.orm.default_entity_manager" ]

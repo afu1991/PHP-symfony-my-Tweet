@@ -1,0 +1,40 @@
+wall_index:
+    path:     /
+    defaults: { _controller: "CoreBundle:Wall:index" }
+    methods:  [GET, POST]
+
+wall_show:
+    path:     /{id}/show
+    defaults: { _controller: "CoreBundle:Wall:show" }
+    methods:  GET
+    options:
+        expose: true
+wall_show_after:
+    path:     /{id}/twitter
+    defaults: { _controller: "CoreBundle:Wall:showWall" }
+    methods:  GET
+
+wall_new:
+    path:     /new
+    defaults: { _controller: "CoreBundle:Wall:new" }
+    methods:  [GET, POST]
+
+wall_edit:
+    path:     /{id}/edit
+    defaults: { _controller: "CoreBundle:Wall:edit" }
+    methods:  [GET, POST]
+
+wall_delete:
+    path:     /{wall}/delete
+    defaults: { _controller: "CoreBundle:Wall:delete" }
+    methods:  GET
+
+param_wall_show:
+    path:    /{id}/params
+    defaults: { _controller: "CoreBundle:Wall:activeParam" }
+    methods:  [GET, POST]
+
+accepted_tweet:
+    path:    /isvalid/{id}/{bool}
+    defaults: { _controller: "CoreBundle:Wall:accepted" }
+    methods: GET

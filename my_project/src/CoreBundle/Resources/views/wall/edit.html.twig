@@ -1,0 +1,44 @@
+{% extends 'CoreBundle::layout.html.twig' %}
+
+{% block body %}
+<div class="row">
+    <div class="container">
+        <div class="card-panel">
+        {{ form_start(edit_form) }}
+        <div class="row">
+            <div class="input-field col s6">
+                {{ form_widget(edit_form.name) }}
+                {{ form_label(edit_form.name, "Nom")}}
+            </div>
+        </div>
+        <div class="row">
+            <div class="input-field col s6">
+                {{ form_widget(edit_form.active) }}
+                {{ form_label(edit_form.active, "Administrable")}}
+            </div>
+        </div>
+        <div class="row">
+            <div class="input-field col s6">
+                {{ form_widget(edit_form.type) }}
+                {{ form_label(edit_form.type, "Nom")}}
+            </div>
+        </div>
+        <div class="row">
+            <div class="input-field col s4">
+                <input class="waves-effect waves-light btn" type="submit" value="{{ "Modifier" | trans }}" />
+            </div>
+        </div>
+        {{ form_end(edit_form) }}
+
+        <ul>
+            <li>
+                <a class="waves-effect waves-light btn" href="{{ path('wall_index') }}">{{ "Retour" | trans }}</a>
+            </li>
+        </ul>
+        </div>
+    </div>
+
+</div>
+
+{% endblock %}
+

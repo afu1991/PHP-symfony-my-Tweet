@@ -1,0 +1,29 @@
+{% extends 'AdminBundle::layout.html.twig' %}
+
+{% block body %}
+
+    <div class="row">
+        <div class="col s12 m8 offset-m2 l6 offset-l3">
+            <div class="card-panel grey lighten-5 z-depth-1">
+                <div class="row valign-wrapper">
+                    <div class="col s12">
+
+                        <img src="http://static.ladepeche.fr/content/media/image/zoom/2011/09/30/anonyme.jpg" alt="" class="circle responsive-img height-img"> <!-- notice the "circle" class -->
+                        <p>Utilisateur <b>{{ user.username }}</b></p>
+                        <p><b>{{ user.email }}</b></p>
+                        <p>
+                            {% if user.twitterAccessToken %}
+                                L'utilisateur à liée son compte a twitter
+                            {% else %}
+                                L'utilisateur n'a pas encore lié son compte a twitter
+                            {% endif %}
+                        </p>
+                        <a href="{{ path('admin_user_index') }}">Retour</a>
+
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

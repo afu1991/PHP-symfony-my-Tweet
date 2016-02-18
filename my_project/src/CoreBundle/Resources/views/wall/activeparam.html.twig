@@ -1,0 +1,71 @@
+{% extends 'CoreBundle::layout.html.twig' %}
+
+{% block body %}
+<div class="row">
+    <div id="admin" class="col s12">
+        <div class="card material-table">
+            <div class="table-header">
+                <span class="table-title">Twitter Wall</span>
+                <div class="actions">
+                    <a class="btn-floating btn-medium waves-effect blue darken-1" href="{{ path('wall_show_after', { 'id': Wall_id  }) }}"><i class="fa fa-eye fa-3x"></i></a>
+
+                </div>
+            </div>
+
+            <form method="post">
+            <table id="datatable">
+                <thead>
+                <tr>
+                    <th>{{ "Selections" | trans }}</th>
+                    <th>Id Twitter</th>
+                    <th>{{ "Contenu" | trans }}</th>
+                    <th>{{ "Tweet" | trans }}</th>
+                    <th>{{ "Accepter" | trans }}</th>
+                    <th>{{ "Refuser" | trans }}</th>
+                </tr>
+                </thead>
+                <tbody>
+
+                {% for tweet in tweets %}
+                    <tr>
+                        <td>
+
+                            <p>
+                                <input type="checkbox" id="{{ tweet.id }}" name="checkbox[{{ tweet.id }}][]"/>
+                                <label for="{{ tweet.id }}"> </label>
+                            </p>
+
+                        </td>
+                        <td>{{ tweet.twitterId }}</td>
+
+                        <td>{{ tweet.content | parse }}</td>
+                        <td>
+                            {% if (tweet.accepted == 1) %}
+                                <b>{{ "Afficher" | trans }}</b>
+                            {% endif %}
+
+                            {% if  tweet.accepted == 0 %}
+                                <b>{{ "Non affiché" | trans }}</b>
+                            {% endif %}
+                        </td>
+                        <td>
+
+                            <a class="waves-effect waves-light btn amber" href="{{ path('accepted_tweet', {'id': tweet.id, 'bool': 1}) }}"><i class="fa fa-check fa-3x"></i></a>
+                        </td>
+                        <td>
+                            <a class="waves-effect waves-light btn red" href="{{ path('accepted_tweet', {'id': tweet.id, 'bool': 0}) }}"><i class="fa fa-times fa-3x"></i></a>
+                        </td>
+                    </tr>
+                {% endfor %}
+
+
+                </tbody>
+            </table>
+                <button type="submit" name="choices" value="accept" class="waves-effect waves-light btn green btn-margin"><i class="fa fa-check fa-3x"></i></button>
+                <button type="submit" name="choices" value="refuse" class="waves-effect waves-light btn red btn-margin"><i class="fa fa-times fa-3x"></i></button>
+            </form>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

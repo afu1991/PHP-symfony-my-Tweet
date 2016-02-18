@@ -1,0 +1,44 @@
+{% trans_default_domain 'FOSUserBundle' %}
+
+
+<div class="row">
+    <div class="container">
+        <div id="profile-page-header" class="card">
+            <div class="card-image waves-effect waves-block waves-light" style="height: 200px">
+                <img class="activator" src="http://www.caterequipment.com/img/about.jpg" alt="user background">
+            </div>
+            <figure class="card-profile-image">
+                <img src="{{ profil.profile_image_url | replace }}" alt="profile image" class="circle z-depth-2 responsive-img activator resize-img">
+            </figure>
+            <div class="card-content">
+                <div class="row">
+                    <div class="col s3 offset-s2">
+                        <h4 class="card-title grey-text text-darken-4">{{ profil.name }}</h4>
+                        <p class="medium-small grey-text"><a href="https://twitter.com/{{ profil.screen_name }}">@{{ profil.screen_name }}</a></p>
+
+                        <p class="medium-small grey-text">{{"Inscrit en"|trans }} {{ profil.created_at | date("M Y") }}</p>
+
+                    </div>
+                    <div class="col s2 center-align">
+                        <h4 class="card-title grey-text text-darken-4">{{ profil.statuses_count }}</h4>
+                        <p class="medium-small grey-text">{{"Tweet"|trans }}</p>
+                    </div>
+                    <div class="col s2 center-align">
+                        <h4 class="card-title grey-text text-darken-4">{{ profil.friends_count }}</h4>
+                        <p class="medium-small grey-text">{{"Abonnement"|trans }}</p>
+                    </div>
+                    <div class="col s2 center-align">
+                        <h4 class="card-title grey-text text-darken-4">{{ profil.followers_count }}</h4>
+                        <p class="medium-small grey-text">{{"Abonnées"|trans }}</p>
+                    </div>
+                    <div class="col s1 right-align">
+                        <a class="btn-floating activator waves-effect waves-light darken-2 right">
+                            <i class="mdi-action-perm-identity"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>

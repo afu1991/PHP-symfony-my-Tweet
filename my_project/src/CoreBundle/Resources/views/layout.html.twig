@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8" />
+    <title>Wac Liu</title>
+
+    {% block stylesheets %}
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.5/css/materialize.min.css">
+        <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
+
+        <link rel="stylesheet" href="{{ asset('css/style.css') }}" type="text/css" />
+
+        {# app/Resources/views/layout.html.twig #}
+
+
+    {% endblock %}
+
+</head>
+<body>
+
+<nav class="light-blue darken-1">
+    <div class="row">
+        <div class="nav-wrapper">
+            {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
+                <ul class="left hide-on-med-and-down">
+                <li><a href="{{ path('wall_index') }}"><i class="fa fa-home fa-2x"></i></a></li>
+                <li><a href="{{ path('wall_new') }}"><i class="fa fa-pencil-square-o fa-2x"></i></a></li>
+                <li><a href="{{ path('twitter_index') }}"><i class="fa fa-twitter-square fa-2x"></i></a></li>
+                <li><a href="{{ path('fos_user_profile_show') }}"><i class="fa fa-user fa-2x"></i></a></li>
+                <li><a href="sass.html"><i class="fa fa-asterisk fa-2x"></i></a></li>
+            </ul>
+            {% endif %}
+
+            {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
+            <ul id="nav-mobile" class="right hide-on-med-and-down">
+                <li><a href="{{ path('fos_user_security_logout') }}"> <i class="fa fa-sign-out fa-2x"></i> </a></li>
+            </ul>
+            {% endif %}
+        </div>
+    </div>
+</nav>
+
+
+        {% if app.request.hasPreviousSession %}
+            {% for type, messages in app.session.flashbag.all() %}
+                {% for message in messages %}
+                    <div class="container flash-{{ type }}">
+
+                        <h5 class="center-align">{{ message }}</h5>
+
+                    </div>
+                {% endfor %}
+            {% endfor %}
+        {% endif %}
+
+
+        {% block fos_user_content %}
+        {% endblock fos_user_content %}
+
+        {% block body %}
+        {% endblock body %}
+
+
+{% block javascripts %}
+    <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+ <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.5/js/materialize.min.js"></script>
+
+    <script src="{{ asset('js/script.js') }}"></script>
+    <script src="{{ asset('bundles/fosjsrouting/js/router.js') }}"></script>
+    <script src="{{ path('fos_js_routing_js', {'callback': 'fos.Router.setData'}) }}"></script>
+
+    {% javascripts '@CoreBundle/Resources/public/js/script.js' %}
+    <script src="{{ asset_url }}"></script>
+    {% endjavascripts %}
+
+{% endblock %}
+
+</body>
+</html>
